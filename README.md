@@ -1,5 +1,12 @@
 # CodeFellows - Code 301 Lab 6 - Node, npm, and Express
 
+## Progress
+### 12/7
+* Repo Created
+* Repo set-up
+* 
+
+
 ## Time Estimates
 
 ## Lab 6
