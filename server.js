@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const weatherArray = [];
 
 
 // ===== middleware ================================================================
@@ -25,14 +26,29 @@ app.get('/location', function (req, res) {
 });
 
 
-app.get('/weather', function (req, res) {
-    res.send({
-        "forecast": "Partly cloudy until afternoon.",
-        "time": "Mon Jan 01 2001"
-    }
-    );
-});
+/* Example Response:
 
+[
+    {
+      "forecast": "Partly cloudy until afternoon.",
+      "time": "Mon Jan 01 2001"
+    },
+    {
+      "forecast": "Mostly cloudy in the morning.",
+      "time": "Tue Jan 02 2001"
+    },
+    ...
+  ] */
+
+
+app.get('/weather', function (req, res) {
+    const weatherData = require('./data/weather.json');
+    weatherData.data.forEach(entry => {
+        weatherArray.push(new WeatherConstructor(entry));
+    });
+    console.log(weatherArray);
+    res.send(weatherArray);
+});
 
 
 // ===== callback functions ==========================================================
@@ -44,8 +60,10 @@ function LocationConstructor(locationObject) {
     this.longitude = locationObject.lon;
 }
 
-
-
+function WeatherConstructor(weatherObject) {
+    this.forecast = weatherObject.weather.description;
+    this.time = weatherObject.valid_date;
+}
 
 
 // ===== error handling and server start

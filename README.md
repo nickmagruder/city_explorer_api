@@ -18,11 +18,22 @@
 * 12/7/2020 5:00pm - Repo Created
 * 12/7/2020 6:18pm - Server framework built (not yet deployed)
 * 12/7/2020 6:49pm - Server running successfully on Heroku
-* 12/7/2020 
+* 12/7/2020 9:15pm - User story 1 complete; successfully pulling data from JSON to front end
+* 
 
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+### Student Collaborators (provided help collaboratively as group in Remo)
+* James Gerstenberger
+* Alan Hung
+* William Moreno
+* Nick Abramowicz
+
+### Resources
+* [Stack overflow, push object into an array](https://stackoverflow.com/questions/40250139/push-object-into-array)
+* [Stack overflow, npm WARN alert](https://stackoverflow.com/questions/16827858/npm-warn-package-json-no-repository-field)
+* [Heroku node.js support](https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version)
+* [How to easily set up node environment - Cameron Baughn](https://codeburst.io/how-to-easily-set-up-node-environment-variables-in-your-js-application-d06740f9b9bd)
 
 ## Time Estimates
 
@@ -38,14 +49,14 @@
 * Start time: 7:00pm
 * Finish time: 8:00pm
 * Start time: 8:30pm
-* Finish time: 
-* Actual time needed to complete: 
+* Finish time: 9:15pm
+* Actual time needed to complete: 1hr 45 min
 
 ## Number and name of feature: 3. Weather
-* Estimate of time needed to complete: 
-* Start time: 
-* Finish time: 
-* Actual time needed to complete: 
+* Estimate of time needed to complete: 1 hr
+* Start time: 9:17pm
+* Finish time: 9:45pm 
+* Actual time needed to complete: ~30min
 
 ## Number and name of feature: 4. Errors
 * Estimate of time needed to complete: 
