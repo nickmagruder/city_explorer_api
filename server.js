@@ -2,11 +2,12 @@
 
 const express = require('express');
 const cors = require('cors');
+const superagent = require('superagent');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const weatherArray = [];
+
 
 
 // ===== middleware ================================================================
@@ -19,29 +20,21 @@ app.use(cors());
 
 
 app.get('/location', function (req, res) {
-    const locationData = require('./data/location.json');
-    const instanceLocationData = new LocationConstructor(locationData[0]);
-    res.send(instanceLocationData);
-    console.log(instanceLocationData);
+    const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${req.query.city}&format=json`;
+
+    superagent.get(url).then(superAgentReturn => {
+        const locationData = superAgentReturn.body[0];
+        const instanceLocationData = new LocationConstructor(locationData, req.query.city);
+        
+        res.send(instanceLocationData);
+    });
 });
 
 
-/* Example Response:
-
-[
-    {
-      "forecast": "Partly cloudy until afternoon.",
-      "time": "Mon Jan 01 2001"
-    },
-    {
-      "forecast": "Mostly cloudy in the morning.",
-      "time": "Tue Jan 02 2001"
-    },
-    ...
-  ] */
-
-
 app.get('/weather', function (req, res) {
+
+    const weatherArray = [];
     const weatherData = require('./data/weather.json');
     weatherData.data.forEach(entry => {
         weatherArray.push(new WeatherConstructor(entry));
@@ -53,8 +46,8 @@ app.get('/weather', function (req, res) {
 
 // ===== callback functions ==========================================================
 
-function LocationConstructor(locationObject) {
-    this.search_query = 'Lynnwood';
+function LocationConstructor(locationObject, reqCity) {
+    this.search_query = reqCity;
     this.formatted_query = locationObject.display_name;
     this.latitude = locationObject.lat;
     this.longitude = locationObject.lon;

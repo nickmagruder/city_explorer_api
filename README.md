@@ -18,8 +18,11 @@
 * 12/7/2020 5:00pm - Repo Created
 * 12/7/2020 6:18pm - Server framework built (not yet deployed)
 * 12/7/2020 6:49pm - Server running successfully on Heroku
-* 12/7/2020 9:15pm - User story 1 complete; successfully pulling data from JSON to front end
-* 
+* 12/7/2020 9:15pm - User story 2 complete; successfully pulling data from JSON to front end
+* 12/7/2020 10:05pm - Story 3 complete, hosted successfully to Heroku
+
+## Lab 07 Change Log
+* 12/8/2020 3:30pm - Story 2, locations, complete
 
 
 ## Credits and Collaborations
@@ -62,6 +65,20 @@
 * Estimate of time needed to complete: 
 * Start time: 
 * Finish time: 
+* Actual time needed to complete: 
+
+## Lab 7
+
+## Number and name of feature: 1. Data Formatting
+* Estimate of time needed to complete: 1.5 hours
+* Start time: 2:15pm
+* Finish time: 
+* Actual time needed to complete: 
+
+## Number and name of feature: 2. Locations
+* Estimate of time needed to complete: 1.5 hours
+* Start time: 2:15pm
+* Finish time: 3:30pm
 * Actual time needed to complete: 
 
 ## Assignment Overview
