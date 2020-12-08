@@ -17,7 +17,8 @@
 ## Change Log
 * 12/7/2020 5:00pm - Repo Created
 * 12/7/2020 6:18pm - Server framework built (not yet deployed)
-* 12/7/2020 6:18pm - 
+* 12/7/2020 6:49pm - Server running successfully on Heroku
+* 12/7/2020 
 
 
 ## Credits and Collaborations
@@ -27,14 +28,16 @@
 
 ## Lab 6
 ## Number and name of feature: 1. Repo Set up
-* Estimate of time needed to complete: 90 min
-* Start time: 4:00pm
-* Finish time: 
-* Actual time needed to complete: 
+* Estimate of time needed to complete: 1hr 30min
+* Start time: 5:00pm
+* Finish time: 6:49pm
+* Actual time needed to complete: 1hr 49min
 
 ## Number and name of feature: 2. Locations
-* Estimate of time needed to complete: 
-* Start time: 
+* Estimate of time needed to complete: 1hr 30min
+* Start time: 7:00pm
+* Finish time: 8:00pm
+* Start time: 8:30pm
 * Finish time: 
 * Actual time needed to complete: 
 
