@@ -15,7 +15,7 @@ app.use(cors());
 
 // ===== light routes ===============================================================
 
-app.get('/gps', function (req, res) {
+/* app.get('/gps', function (req, res) {
     const gpsData = require('./data/location.json');
     const instanceOfGpsData = new GpsData(gpsData);
     res.send(instanceOfGpsData);
@@ -23,5 +23,12 @@ app.get('/gps', function (req, res) {
     console.log(instanceOfGpsData);
 
     res.send(instanceOfGpsData);
-});
+}); */
 
+// ===== error handling and server start
+
+app.use('*', (request, response) => {
+    response.status(404).send('Route note found');
+  });
+  
+  app.listen(PORT, () => console.log(`server running on port: ${PORT}`));
