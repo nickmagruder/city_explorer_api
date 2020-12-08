@@ -1,11 +1,11 @@
 {
-  "name": "city explorer api",
+  "name": "city-explorer-api",
   "version": "0.0.1",
   "description": "Codefellows Code 301 Server-build labs",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": "12.x"
   },
+  "main": "server.js",
   "author": "nickmagruder",
   "license": "MIT",
   "dependencies": {
@@ -14,5 +14,3 @@
     "express": "^4.17.1"
   }
 }
-
-
