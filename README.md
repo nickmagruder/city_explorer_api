@@ -25,6 +25,7 @@
 * 12/8/2020 3:30pm - Story 2, locations, complete
 * 12/8/2020 4:00pm - Heroku keys issue debugged, hosted Story 2 to Heroku
 * 12/8/2020 6:40pm - Story 1 and 3 complete; weather data formatting and pulling API data complete
+* 12/8/2020 8:31pm - Story 4 complete - hike data pulling correctly
 
 
 ## Credits and Collaborations
@@ -65,7 +66,7 @@
 
 ## Number and name of feature: 4. Errors
 * Estimate of time needed to complete: 
-* Start time: 
+* Start time:     
 * Finish time: 
 * Actual time needed to complete: 
 
@@ -82,6 +83,20 @@
 * Start time: 2:15pm
 * Finish time: 3:30pm
 * Actual time needed to complete: 1.25hours
+
+## Number and name of feature: 3. Weather
+* Estimate of time needed to complete: 2 hours
+* Start time: 4:00pm
+* Finish time: 6:40pm
+* Actual time needed to complete: 2 hrs 40min
+
+## Number and name of feature: 4. Hiking API
+* Estimate of time needed to complete: 1 hr
+* Start time: 7:40pm    
+* Finish time: 8:35pm
+* Actual time needed to complete: 55min
+
+
 
 ## Assignment Overview
 In labs 6 through 9, you will be building a stand-alone back end which will interact with a static front end. You will request data from a total of six third-party APIs, modify the data as needed, and send the data to the client to be displayed in the browser. In labs 8 and 9, you will be persisting data in a SQL database.

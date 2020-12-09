@@ -27,14 +27,12 @@ app.get('/location', function (req, res) {
     superagent.get(url).then(superAgentReturn => {
         const locationData = superAgentReturn.body[0];
         const instanceLocationData = new LocationConstructor(locationData, req.query.city);
-        /*         console.log(instanceLocationData); */
         res.send(instanceLocationData);
     });
 });
 
 
 app.get('/weather', function (req, res) {
-    /*     console.log(req.query.latitude); */
     const lat = req.query.latitude;
     const long = req.query.longitude;
     const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
@@ -53,6 +51,25 @@ app.get('/weather', function (req, res) {
         });
 });
 
+app.get('/trails', function (req, res) {
+    const lat = req.query.latitude;
+    const long = req.query.longitude;
+    const TRAIL_API_KEY = process.env.TRAIL_API_KEY;
+    const urlTrails = `http://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxDistance=100&key=${TRAIL_API_KEY}&maxResults=5`;
+
+    return superagent.get(urlTrails)
+        .then(trailEntry => {
+            let trailsArray = trailEntry.body.trails;
+            let nextTrailData = trailsArray.map(trail => {
+                return new TrailConstructor(trail);
+            })
+            res.send(nextTrailData);
+        })
+        .catch(error => {
+            console.log(error, 'ERROR!')
+        });
+});
+
 //     at processTicksAndRejections (internal/process/task_queues.js:97:5) ERROR!
 
 // ===== callback functions ==========================================================
@@ -65,9 +82,21 @@ function LocationConstructor(locationObject, reqCity) {
 }
 
 function WeatherConstructor(weatherObject) {
-    console.log(weatherObject, 'CONSTRUCTOR LOG');
     this.forecast = weatherObject.weather.description;
     this.time = weatherObject.valid_date;
+}
+
+function TrailConstructor(trailObject) {
+    this.name = trailObject.name;
+    this.location = trailObject.location;
+    this.length = trailObject.length;
+    this.stars = trailObject.stars;
+    this.star_votes = trailObject.starVotes;
+    this.summary = trailObject.summary;
+    this.trail_url = trailObject.url;
+    this.conditions = trailObject.conditionDetails;
+    this.condition_date = trailObject.conditionDate;
+    this.condition_time = trailObject.conditionDate;
 }
 
 
