@@ -23,6 +23,8 @@
 
 ## Lab 07 Change Log
 * 12/8/2020 3:30pm - Story 2, locations, complete
+* 12/8/2020 4:00pm - Heroku keys issue debugged, hosted Story 2 to Heroku
+* 12/8/2020 6:40pm - Story 1 and 3 complete; weather data formatting and pulling API data complete
 
 
 ## Credits and Collaborations
@@ -69,17 +71,17 @@
 
 ## Lab 7
 
-## Number and name of feature: 1. Data Formatting
-* Estimate of time needed to complete: 1.5 hours
-* Start time: 2:15pm
-* Finish time: 
+## Number and name of feature: 1 & 2. Data Formatting & Weather
+* Estimate of time needed to complete: 2 hours
+* Start time: 4:00pm
+* Finish time: 6:40pm
 * Actual time needed to complete: 
 
 ## Number and name of feature: 2. Locations
 * Estimate of time needed to complete: 1.5 hours
 * Start time: 2:15pm
 * Finish time: 3:30pm
-* Actual time needed to complete: 
+* Actual time needed to complete: 1.25hours
 
 ## Assignment Overview
 In labs 6 through 9, you will be building a stand-alone back end which will interact with a static front end. You will request data from a total of six third-party APIs, modify the data as needed, and send the data to the client to be displayed in the browser. In labs 8 and 9, you will be persisting data in a SQL database.
