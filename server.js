@@ -3,11 +3,15 @@
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
+const pg = require('pg');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const DATABASE_URL = process.env.DATABASE_URL;
 
+const client = new pg.Client(DATABASE_URL);
+client.on('error', (error) => console.error(error));
 
 
 // ===== middleware ================================================================
@@ -95,8 +99,8 @@ function TrailConstructor(trailObject) {
     this.summary = trailObject.summary;
     this.trail_url = trailObject.url;
     this.conditions = trailObject.conditionDetails;
-    this.condition_date = trailObject.conditionDate;
-    this.condition_time = trailObject.conditionDate;
+    this.condition_date = trailObject.conditionDate.slice(0, 10);
+    this.condition_time = trailObject.conditionDate.slice(11);
 }
 
 
@@ -106,4 +110,9 @@ app.use('*', (request, response) => {
     response.status(404).send('Route note found');
 });
 
-app.listen(PORT, () => console.log(`server running on port: ${PORT}`));
+
+client.connect()
+.then(() => {
+app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
+})
+.catch(error => console.error(error));
