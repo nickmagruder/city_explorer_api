@@ -96,6 +96,29 @@
 * Finish time: 8:35pm
 * Actual time needed to complete: 55min
 
+## Lab 08
+
+## Number and name of feature: 1. Hiking API
+* Estimate of time needed to complete: 2 hr
+* Start time: 6:53pm
+* Finish time: 7:11pm
+* Start time: 8:33
+* Finish time: 8:55pm
+* Start time: 9:57pm
+* Finish time: 10:10pm
+* Actual time needed to complete: 1hr 45min
+
+## Number and name of feature: 2. Server
+* Estimate of time needed to complete: 
+* Start time: 
+* Finish time: 
+* Actual time needed to complete: 
+
+## Number and name of feature: 3. Deploy
+* Estimate of time needed to complete: 
+* Start time: 
+* Finish time: 
+* Actual time needed to complete: 
 
 
 ## Assignment Overview
