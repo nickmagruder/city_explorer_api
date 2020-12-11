@@ -27,6 +27,10 @@
 * 12/8/2020 6:40pm - Story 1 and 3 complete; weather data formatting and pulling API data complete
 * 12/8/2020 8:31pm - Story 4 complete - hike data pulling correctly
 
+## Lab 08 Change Log
+* 12/9 10:10pm - SQL DB set up
+* 12/10 9:15pm - location data saving/pulling from SQL DB
+* 12/10 9:35 - Deployed to Heroku
 
 ## Credits and Collaborations
 ### Student Collaborators (provided help collaboratively as group in Remo)
@@ -109,7 +113,7 @@
 * Actual time needed to complete: 1hr 45min
 
 ## Number and name of feature: 2. Server
-* Estimate of time needed to complete: 
+* Estimate of time needed to complete: 2 hr
 * Start time: 
 * Finish time: 
 * Actual time needed to complete: 

@@ -8,7 +8,10 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
 const DATABASE_URL = process.env.DATABASE_URL;
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+
 
 const client = new pg.Client(DATABASE_URL);
 client.on('error', (error) => console.error(error));
@@ -20,20 +23,34 @@ app.use(cors());
 
 
 // ===== light routes ===============================================================
+
+app.get('/location', getLoc);
+
+
 // https://code301-city-explorer-api.herokuapp.com/location?city=seattle 
 
 
-app.get('/location', function (req, res) {
-
-    const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
-    const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${req.query.city}&format=json`;
-
-    superagent.get(url).then(superAgentReturn => {
-        const locationData = superAgentReturn.body[0];
-        const instanceLocationData = new LocationConstructor(locationData, req.query.city);
-        res.send(instanceLocationData);
-    });
-});
+// location NEW
+function getLoc(req, res) {
+    const query = req.query.city
+    client.query('SELECT * FROM location WHERE search_query=$1', [query])
+        .then(result => {
+            if (result.rows.length !== 0) {
+                console.log(result.rows);
+                res.send(result.rows[0]);
+            } else {
+                superagent.get(`https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&q=${query}&format=json`)
+                    .then(result => {
+                        const location = new LocationConstructor(result.body[0], query);
+                        const sql = 'INSERT INTO location (search_query, latitude, longitude, formatted_query) VALUES ($1, $2, $3, $4)';
+                        client.query(sql, [location.search_query, location.latitude, location.longitude, location.formatted_query])
+                            .then(() => {
+                                res.send(location);
+                            });
+                    });
+            }
+        });
+}
 
 
 app.get('/weather', function (req, res) {
@@ -54,6 +71,8 @@ app.get('/weather', function (req, res) {
             console.log(error, 'ERROR!')
         });
 });
+
+
 
 app.get('/trails', function (req, res) {
     const lat = req.query.latitude;
@@ -78,6 +97,7 @@ app.get('/trails', function (req, res) {
 
 // ===== callback functions ==========================================================
 
+// NEW constructors
 function LocationConstructor(locationObject, reqCity) {
     this.search_query = reqCity;
     this.formatted_query = locationObject.display_name;
@@ -85,11 +105,14 @@ function LocationConstructor(locationObject, reqCity) {
     this.longitude = locationObject.lon;
 }
 
-function WeatherConstructor(weatherObject) {
+function WeatherConstructor(weatherObject, searchQuery) {
+    this.search_query = searchQuery;
     this.forecast = weatherObject.weather.description;
     this.time = weatherObject.valid_date;
 }
 
+
+//old trails
 function TrailConstructor(trailObject) {
     this.name = trailObject.name;
     this.location = trailObject.location;
@@ -106,13 +129,12 @@ function TrailConstructor(trailObject) {
 
 // ===== error handling and server start
 
-app.use('*', (request, response) => {
-    response.status(404).send('Route note found');
+
+app.use('*', (req, res) => {
+    res.send('Sorry, unable to find route.');
 });
 
+const listen = () => app.listen(PORT, () => console.log(`Running successfully on port : ${PORT}`));
 
 client.connect()
-.then(() => {
-app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
-})
-.catch(error => console.error(error));
+    .then(listen);
