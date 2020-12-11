@@ -75,7 +75,6 @@
 * Actual time needed to complete: 
 
 ## Lab 7
-
 ## Number and name of feature: 1 & 2. Data Formatting & Weather
 * Estimate of time needed to complete: 2 hours
 * Start time: 4:00pm
@@ -101,7 +100,6 @@
 * Actual time needed to complete: 55min
 
 ## Lab 08
-
 ## Number and name of feature: 1. Hiking API
 * Estimate of time needed to complete: 2 hr
 * Start time: 6:53pm
@@ -114,15 +112,15 @@
 
 ## Number and name of feature: 2. Server
 * Estimate of time needed to complete: 2 hr
-* Start time: 
-* Finish time: 
-* Actual time needed to complete: 
+* Start time: 6:40pm
+* Finish time: 9:12pm (with breaks)
+* Actual time needed to complete: 1 hr 50min
 
 ## Number and name of feature: 3. Deploy
-* Estimate of time needed to complete: 
-* Start time: 
-* Finish time: 
-* Actual time needed to complete: 
+* Estimate of time needed to complete: 45min
+* Start time: 9:12pm
+* Finish time: 9:39pm
+* Actual time needed to complete:  27min
 
 
 ## Assignment Overview
