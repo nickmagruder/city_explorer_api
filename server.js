@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
+const { query } = require('express');
 require('dotenv').config();
 
 const app = express();
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 const DATABASE_URL = process.env.DATABASE_URL;
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 
 
 const client = new pg.Client(DATABASE_URL);
@@ -72,8 +74,6 @@ app.get('/weather', function (req, res) {
         });
 });
 
-
-
 app.get('/trails', function (req, res) {
     const lat = req.query.latitude;
     const long = req.query.longitude;
@@ -93,11 +93,36 @@ app.get('/trails', function (req, res) {
         });
 });
 
+app.get('/movies', function (req, res) {
+/*  const lat = req.query.latitude;
+    const long = req.query.longitude; */
+    const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
+    const urlMovies = 'https://api.themoviedb.org/3/search/movie';
+
+    return superagent.get(urlMovies)
+        .query({
+            api_key: MOVIE_API_KEY,
+            language: 'en-us',
+            page: '1',
+            query: req.query.search_query,
+        })
+        .then(movieEntry => {
+            let movieArray = movieEntry.body.results;
+            let nextMovieData = movieArray.map(film => {
+                return new MovieConstructor(film);
+            })
+            res.send(nextMovieData);
+        })
+        .catch(error => {
+            console.log(error, 'ERROR!')
+        });
+});
+
+
 //     at processTicksAndRejections (internal/process/task_queues.js:97:5) ERROR!
 
 // ===== callback functions ==========================================================
 
-// NEW constructors
 function LocationConstructor(locationObject, reqCity) {
     this.search_query = reqCity;
     this.formatted_query = locationObject.display_name;
@@ -111,8 +136,6 @@ function WeatherConstructor(weatherObject, searchQuery) {
     this.time = weatherObject.valid_date;
 }
 
-
-//old trails
 function TrailConstructor(trailObject) {
     this.name = trailObject.name;
     this.location = trailObject.location;
@@ -124,6 +147,15 @@ function TrailConstructor(trailObject) {
     this.conditions = trailObject.conditionDetails;
     this.condition_date = trailObject.conditionDate.slice(0, 10);
     this.condition_time = trailObject.conditionDate.slice(11);
+}
+
+function MovieConstructor(movieObject) {
+    this.title = movieObject.original_title;
+    this.overview = movieObject.overview;
+    this.average_votes = movieObject.vote_average;
+    this.image_url = `https://image.tmdb.org/t/p/w500${movieObject.poster_path}`;
+    this.popularity = movieObject.popularity;
+    this.released_on = movieObject.release_date;
 }
 
 
