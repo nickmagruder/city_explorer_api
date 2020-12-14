@@ -41,6 +41,9 @@ DATABASE_URL =
 * 12/10 9:15pm - location data saving/pulling from SQL DB
 * 12/10 9:35 - Deployed to Heroku
 
+## Lab 09 Change Log
+* 12/139 10:50pm - Movie functionality complete
+
 ## Credits and Collaborations
 ### Student Collaborators (provided help collaboratively as group in Remo)
 * James Gerstenberger
@@ -131,6 +134,20 @@ DATABASE_URL =
 * Finish time: 9:39pm
 * Actual time needed to complete:  27min
 
+## Lab 09
+## Number and name of feature: 1. Movies
+* Estimate of time needed to complete: 2 hr
+* Start time: 9:56pm
+* Finish time: 10:50pm
+* Actual time needed to complete: 53min
+
+## Number and name of feature: 2. Yelp
+* Estimate of time needed to complete: 3 hr
+* Start time: 10:50pm
+* Finish time: 11:39pm
+* Start time: 
+* Finish time: 
+* Actual time needed to complete: in progress
 
 ## Assignment Overview
 In labs 6 through 9, you will be building a stand-alone back end which will interact with a static front end. You will request data from a total of six third-party APIs, modify the data as needed, and send the data to the client to be displayed in the browser. In labs 8 and 9, you will be persisting data in a SQL database.

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 const DATABASE_URL = process.env.DATABASE_URL;
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
-
+const YELP_API_KEY = process.env.MOVIE_API_KEY;
 
 const client = new pg.Client(DATABASE_URL);
 client.on('error', (error) => console.error(error));
@@ -94,8 +94,6 @@ app.get('/trails', function (req, res) {
 });
 
 app.get('/movies', function (req, res) {
-/*  const lat = req.query.latitude;
-    const long = req.query.longitude; */
     const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
     const urlMovies = 'https://api.themoviedb.org/3/search/movie';
 
@@ -118,10 +116,41 @@ app.get('/movies', function (req, res) {
         });
 });
 
+app.get('/yelp', function (req, res) {
+/*     const lat = req.query.latitude;
+    const long = req.query.longitude; */
+    const YELP_API_KEY = process.env.YELP_API_KEY;
+    const urlYelp = 'https://api.yelp.com/v3/businesses/search';
 
-//     at processTicksAndRejections (internal/process/task_queues.js:97:5) ERROR!
+    return superagent.get(urlTrails)
+        .set('Authorization', `Bearer ${YELP_API_KEY}`)
+        .query({
+            term: 'restaurants',
+            latitude: lat,
+            longitude: long,
+            limit: '20',
+    })
+        .then(yelpEntry => {
+            let yelpArray = yelpEntry.body.trails;
+            let nextYelpData = yelpArray.map(food => {
+                return new Yelp(food);
+            })
+            res.send(nextYelpData);
+        })
+        .catch(error => {
+            console.log(error, 'ERROR!')
+        });
+});
 
 // ===== callback functions ==========================================================
+
+function Yelp(food){
+    this.name = food.name 
+    this.image_url = food.image_url
+    this.price = food.price
+    this.rating = food.rating
+    this.url = food.url
+  }
 
 function LocationConstructor(locationObject, reqCity) {
     this.search_query = reqCity;
