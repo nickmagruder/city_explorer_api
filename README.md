@@ -14,6 +14,15 @@
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
+### .ENV:
+PORT = 
+GEOCODE_API_KEY = 
+WEATHER_API_KEY = 
+TRAIL_API_KEY = 
+MOVIE_API_KEY = 
+DATABASE_URL = 
+
+
 ## Change Log
 * 12/7/2020 5:00pm - Repo Created
 * 12/7/2020 6:18pm - Server framework built (not yet deployed)
