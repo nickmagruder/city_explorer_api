@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001;
 const DATABASE_URL = process.env.DATABASE_URL;
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
-
+const YELP_API_KEY = process.env.MOVIE_API_KEY;
 
 const client = new pg.Client(DATABASE_URL);
 client.on('error', (error) => console.error(error));
@@ -27,7 +27,7 @@ app.use(cors());
 // ===== light routes ===============================================================
 
 app.get('/location', getLoc);
-
+app.get('/yelp', yelpAPI);
 
 // https://code301-city-explorer-api.herokuapp.com/location?city=seattle 
 
@@ -70,6 +70,7 @@ app.get('/weather', function (req, res) {
             res.send(nextWeatherData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
@@ -89,13 +90,12 @@ app.get('/trails', function (req, res) {
             res.send(nextTrailData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
 
 app.get('/movies', function (req, res) {
-/*  const lat = req.query.latitude;
-    const long = req.query.longitude; */
     const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
     const urlMovies = 'https://api.themoviedb.org/3/search/movie';
 
@@ -114,14 +114,47 @@ app.get('/movies', function (req, res) {
             res.send(nextMovieData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
 
+function yelpAPI(req, res) {
+    const yelpLat = req.query.latitude;
+    const yelpLong = req.query.longitude; 
+    const YELP_API_KEY = process.env.YELP_API_KEY;
+    const urlYelp = 'https://api.yelp.com/v3/businesses/search';
 
-//     at processTicksAndRejections (internal/process/task_queues.js:97:5) ERROR!
+    return superagent.get(urlYelp)
+        .set('Authorization', `Bearer ${YELP_API_KEY}`)
+        .query({
+            term: 'restaurants',
+            latitude: yelpLat,
+            longitude: yelpLong,
+            limit: '20',
+    })
+        .then(yelpEntry => {
+            let yelpArray = yelpEntry.body.businesses;
+            let nextYelpData = yelpArray.map(food => {
+                return new Yelp(food);
+            })
+            res.send(nextYelpData);
+        })
+        .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
+            console.log(error, 'ERROR!')
+        });
+};
 
 // ===== callback functions ==========================================================
+
+function Yelp(food){
+    this.name = food.name 
+    this.image_url = food.image_url
+    this.price = food.price
+    this.rating = food.rating
+    this.url = food.url
+  }
 
 function LocationConstructor(locationObject, reqCity) {
     this.search_query = reqCity;
