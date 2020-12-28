@@ -23,10 +23,8 @@ PORT =
 * 12/7/2020 6:49pm - Server running successfully on Heroku
 * 12/7/2020 9:15pm - User story 2 complete; successfully pulling data from JSON to front end
 * 12/7/2020 10:05pm - Story 3 complete, hosted successfully to Heroku
-
-## Lab 07 Change Log
 * 12/14/2020 2:40pm - Repo and Heroku App created
-* 
+* 12/27/2020 9:50pm - Lab complete, YELP API working
 
 
 
@@ -131,9 +129,9 @@ PORT =
 * Estimate of time needed to complete: 3 hr
 * Start time: 10:50pm
 * Finish time: 11:39pm
-* Start time: 
-* Finish time: 
-* Actual time needed to complete: in progress
+* Start time: 9:00 
+* Finish time: 9:49pm
+* Actual time needed to complete: 2 hrs
 
 ## Assignment Overview
 In labs 6 through 9, you will be building a stand-alone back end which will interact with a static front end. You will request data from a total of six third-party APIs, modify the data as needed, and send the data to the client to be displayed in the browser. In labs 8 and 9, you will be persisting data in a SQL database.
