@@ -1,9 +1,9 @@
-# CodeFellows - Code 301 Lab 6 - Node, npm, and Express
+# CodeFellows - Code 301 Labs 11,12,13,14 - Open Shelf
 
 # Project Name
 
-**Author**: Nick Magruder
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Seid MO & Nick Magruder
+**Version**: 1.0.0 
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -16,12 +16,6 @@
 
 ### .ENV:
 PORT = 
-GEOCODE_API_KEY = 
-WEATHER_API_KEY = 
-TRAIL_API_KEY = 
-MOVIE_API_KEY = 
-DATABASE_URL = 
-
 
 ## Change Log
 * 12/7/2020 5:00pm - Repo Created
@@ -31,18 +25,10 @@ DATABASE_URL =
 * 12/7/2020 10:05pm - Story 3 complete, hosted successfully to Heroku
 
 ## Lab 07 Change Log
-* 12/8/2020 3:30pm - Story 2, locations, complete
-* 12/8/2020 4:00pm - Heroku keys issue debugged, hosted Story 2 to Heroku
-* 12/8/2020 6:40pm - Story 1 and 3 complete; weather data formatting and pulling API data complete
-* 12/8/2020 8:31pm - Story 4 complete - hike data pulling correctly
+* 12/14/2020 2:40pm - Repo and Heroku App created
+* 
 
-## Lab 08 Change Log
-* 12/9 10:10pm - SQL DB set up
-* 12/10 9:15pm - location data saving/pulling from SQL DB
-* 12/10 9:35 - Deployed to Heroku
 
-## Lab 09 Change Log
-* 12/139 10:50pm - Movie functionality complete
 
 ## Credits and Collaborations
 ### Student Collaborators (provided help collaboratively as group in Remo)

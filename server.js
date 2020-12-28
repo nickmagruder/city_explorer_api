@@ -27,7 +27,7 @@ app.use(cors());
 // ===== light routes ===============================================================
 
 app.get('/location', getLoc);
-
+app.get('/yelp', yelpAPI);
 
 // https://code301-city-explorer-api.herokuapp.com/location?city=seattle 
 
@@ -70,6 +70,7 @@ app.get('/weather', function (req, res) {
             res.send(nextWeatherData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
@@ -89,6 +90,7 @@ app.get('/trails', function (req, res) {
             res.send(nextTrailData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
@@ -112,35 +114,37 @@ app.get('/movies', function (req, res) {
             res.send(nextMovieData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
 });
 
-app.get('/yelp', function (req, res) {
-/*     const lat = req.query.latitude;
-    const long = req.query.longitude; */
+function yelpAPI(req, res) {
+    const yelpLat = req.query.latitude;
+    const yelpLong = req.query.longitude; 
     const YELP_API_KEY = process.env.YELP_API_KEY;
     const urlYelp = 'https://api.yelp.com/v3/businesses/search';
 
-    return superagent.get(urlTrails)
+    return superagent.get(urlYelp)
         .set('Authorization', `Bearer ${YELP_API_KEY}`)
         .query({
             term: 'restaurants',
-            latitude: lat,
-            longitude: long,
+            latitude: yelpLat,
+            longitude: yelpLong,
             limit: '20',
     })
         .then(yelpEntry => {
-            let yelpArray = yelpEntry.body.trails;
+            let yelpArray = yelpEntry.body.businesses;
             let nextYelpData = yelpArray.map(food => {
                 return new Yelp(food);
             })
             res.send(nextYelpData);
         })
         .catch(error => {
+            res.status(500).send('Sorry, an error has occured');
             console.log(error, 'ERROR!')
         });
-});
+};
 
 // ===== callback functions ==========================================================
 
